@@ -2,7 +2,7 @@ import Veterinario from "../models/Veterinario.js";
 
 const registrar = async  (req, res) => {
     
-    const {email, password, nombre} = req.body;
+    const {email,} = req.body;
     //Prevenir usuarios duplicados
     const existeUsuario = await Veterinario.findOne({email});
     if (existeUsuario){
@@ -26,24 +26,40 @@ const perfil = (req, res) => {
 const confirmar = async(req, res) => {
     const{ token} = req.params
     const usuarioConfirmar = await Veterinario.findOne({token});
-    if (!usuarioConfirmar)
-    {
+    if (!usuarioConfirmar){
         const error =new Error('Token no valido');
         return res.status(404).json({msg: error.message});
     }
     try {
         usuarioConfirmar.token =null;
-        usuarioConfirmar.confirmando = true;
+        usuarioConfirmar.confirmado = true;
         await usuarioConfirmar.save()
         res.json({ msg: "Usuario confirmado correctamente" });
-    } catch (error) {
-        
+    } catch (error) {        
         console.log(error);  
-    } 
-   
+    }  
 };
 
-
-
-export {registrar, perfil,confirmar};
+const autenticar = async(req, res) => {
+    const {email,password} = req.body;
+    //comprobar si el usuario existe
+    const usuario = await Veterinario.findOne({email});
+    if (!usuario){
+        const error =new Error("El Usuario no existe");
+        return res.status(404).json({msg: error.message});
+    }  
+    //comprobando si el usuario esta confirmado
+    if (!usuario.confirmado){
+        const error = new Error("Tu  Cuenta no ha sido confirmada");
+        return res.status(403).json({msg: error.message});
+    }  
+    //Revisar Password
+    if(await usuario.comprobarPassword(password)) {
+        console.log("Password correcto");
+      }else{
+        const error = new Error("El password es incorrecto");
+        return res.status(403).json({msg: error.message});
+    }  
+};
+export {registrar, perfil,confirmar, autenticar};
 

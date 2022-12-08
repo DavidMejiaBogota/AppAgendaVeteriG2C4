@@ -1,15 +1,17 @@
+import { Link } from 'react-router-dom'
 
 const Login = () => {
   return (
     <>
-      <iv>
-        <h1 className="text-indigo-600 font-black text-7xl text-center">
+      <div className="items-center">
+        <h1 className="text-indigo-600 font-black text-7xl text-center it">
           Inicia Sesión, Administra tus <span className="text-black ">Pacientes</span>
         </h1>
-      </iv>
-      <iv>
+      </div>
+
+      <div className="mt-20 md:mt-5 shadow-lg items-center rounded-xl bg-white">
         <form>
-          <div className="my-5 ">
+          <div className="my-5 mx-5">
             <label
               className="uppercase text-gray-600 block text-xl font-bold" //uppercase para que el texto se vea en mayúsculas; 
             >
@@ -22,7 +24,7 @@ const Login = () => {
             />
           </div>
 
-          <div className="my-5 ">
+          <div className="my-5 mx-5">
             <label
               className="uppercase text-gray-600 block text-xl font-bold" //uppercase para que el texto se vea en mayúsculas; 
             >
@@ -38,11 +40,19 @@ const Login = () => {
           <input
             type="submit"
             value="Iniciar Sesión"
-            className="px-10 py-3 bg-indigo-700 rounded-xl text-white uppercase font-bold mt-5 hover:cursor-pointer hover:bg-indigo-800"
+            className="my-5 mx-5 px-10 py-3 bg-indigo-700 rounded-xl text-white uppercase font-bold hover:cursor-pointer hover:bg-indigo-800 md:w-auto"
           />
         </form>
-      </iv>
-   
+
+        <nav className="mt-10 lg:flex lg:justify-between text-gray-500 mx-5">
+          <Link
+            className="block text-center my-5"
+            to="/registrar">¿No tienes una cuenta? ¡¡Registrate!!</Link>
+          <Link
+            className="block text-center my-5"
+            to="/olvide-password">Olvidé mi password</Link>
+        </nav>
+      </div>
     </>
   );
 };

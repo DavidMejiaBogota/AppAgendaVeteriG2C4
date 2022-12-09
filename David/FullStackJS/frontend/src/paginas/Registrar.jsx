@@ -70,7 +70,7 @@ const Resgistrar = () => {
 
             <input
               type="submit"
-              value="Iniciar Sesión"
+              value="Crear Cuenta"
               className="my-5 mx-5 px-10 py-3 bg-indigo-700 rounded-xl text-white uppercase font-bold hover:cursor-pointer hover:bg-indigo-800 md:w-auto"
             />
           </form>

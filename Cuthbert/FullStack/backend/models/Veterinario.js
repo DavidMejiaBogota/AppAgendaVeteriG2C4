@@ -29,6 +29,7 @@ const veterinarioSchema = mongoose.Schema({
     },
     token:{
         type:String,
+       // default:Date.now(),
         default: generarId(),
     },
     confirmado:{

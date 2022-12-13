@@ -1,15 +1,15 @@
-
+import {Link} from "react-router-dom"
 
 const Login = () => {
   return (
     <>
     <div>
-        <h1 className="text-indigo-600 font-black text-5xl">
-            Inicia Sesión y Administra tus 
-            <span className="text-black" >Pacientes</span>
+        <h1 className="text-indigo-600 font-black text-6xl text-center">
+            Inicia Sesión y Administra tus {""}
+            <span className="text-black">Pacientes</span>
         </h1>
     </div>
-    <div>
+    <div className="mt-20 md:mt-5 shadow-lg px-5 py-10 rounded-xl bg-white">
         <form>
             <div className="my-5">
                 <label
@@ -28,11 +28,11 @@ const Login = () => {
                 <label
                 className="uppercase text-gray-600 block text-xl font-bold"
                 >
-                    Password
+                    Contraseña
                 </label>
                 <input
-                    type="password"
-                    placeholder="Tu password"
+                    type="contraseña"
+                    placeholder="Tu contraseña"
                     className="border w-full p-3 mt-3 bg-gray-50 rounded-xl"
                 />
             </div>
@@ -46,6 +46,14 @@ const Login = () => {
             />
 
         </form>
+        <nav className="mt-10 lg:flex lg:justify-between">
+            <Link 
+            className="block text-center my-5 text-gray-500"
+            to="/registrar">¿No tienes una cuenta? Regístrate</Link>
+            <Link 
+            className="block text-center my-5 text-gray-500"
+            to="/olvide-password">Olvide mi contraseña</Link>
+        </nav>
     </div>
     
     </>

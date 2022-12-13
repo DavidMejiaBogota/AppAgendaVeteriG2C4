@@ -1,20 +1,29 @@
 import Veterinario from "../models/Veterinario.js";
 import generarJWT from "../helpers/generarJWT.js";
 import generarId from "../helpers/generarId.js";
+import emailRegistro from "../helpers/emailRegistro.js";
 
 const registrar = async (req, res) => {
-    const { email } = req.body;
+    const { email, nombre } = req.body;
 
+    //Prevenir usuarios duplicados
     const existeUsuario = await Veterinario.findOne ({email}); //perminte buscar por los difirentes atributos de cada registro/documento.
     if (existeUsuario) { //si el usuario existe ejecuta el siguietne código
       const error = new Error("Usuario ya registrado"); // para que se almacen en el variable error el error :-). 
       return res.status(400).json({msg: error.message}); //mensaje para poder acceder a él en el front-end. 
     }
+
     try {
         //Guardar un nuevo veterinario
-        const veterinario = new Veterinario(req.body);
-        const veterinarioGuardado = await veterinario.save();
+        const veterinario = new Veterinario(req.body);//se crea una instancia del modelo
+        const veterinarioGuardado = await veterinario.save();//se guarda la info genenerada en la instancia
         
+        //Enviar email de registros del veterinario
+        emailRegistro({ //se manda a llamar la función de email registro
+            email,
+            nombre,
+            token: veterinarioGuardado.token,
+        }); 
         res.json(veterinarioGuardado);
     } catch (error) {
         console.error(error)

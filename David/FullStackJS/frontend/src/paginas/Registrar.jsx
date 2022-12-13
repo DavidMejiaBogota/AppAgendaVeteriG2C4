@@ -35,15 +35,9 @@ const Resgistrar = () => {
     try {
       const url = "http://localhost:4000/api/veterinarios"
       await axios.post(url, {nombre, email, password});
-      setAlerta({
-        msg: 'Creado correctamente, por favor revisa tu email',
-        error: false
-      })
+      setAlerta({ msg: 'Creado correctamente, por favor revisa tu email', error: false});
     } catch (error) {
-      setAlerta({
-        msg: error.response.data.msg,
-        error: true,
-      })
+      setAlerta({msg: error.response.data.msg, error: true });
     }
   }
 

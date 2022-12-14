@@ -11,15 +11,15 @@ app.use(express.json());
 dotenv.config();
 conectarDB();
 
-const dominiosPermitidos = ["http://localhost:5173"]
+const dominiosPermitidos = ["http://localhost:5173"];
 
 const corsOptions = {
     origin: function(origin, callback) {
         if(dominiosPermitidos.indexOf(origin) !== -1) {
             //El origien del request está permitido.
-            callback(null, true)
+            callback(null, true);
         } else {
-            callback(new Error('No permitido por CORS'))
+            callback(new Error('No permitido por CORS'));
         }
     },
 };

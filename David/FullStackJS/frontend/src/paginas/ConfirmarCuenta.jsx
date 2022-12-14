@@ -18,9 +18,9 @@ const ConfirmarCuenta = () => {
           const url = `http://localhost:4000/api/veterinarios/confirmar/${id}`
           const { data } = await axios(url)
           setCuentaConfirmada(true)
-          setAlerta({msg: data.msg})
+          setAlerta({msg: data.msg })
         } catch (error) {
-          setAlerta({msg: error.response.data.msg, error: true });
+          setAlerta({ msg: error.response.data.msg, error: true });
         }
 
         setCargando(false);
@@ -38,9 +38,9 @@ const ConfirmarCuenta = () => {
 
         <div className="mt-20 md:mt-5 shadow-lg px-5 py-10 rounded-xl bg-white">
           {!cargando &&
-          <Alerta 
-            alerta={alerta}
-          />}
+            <Alerta 
+              alerta={alerta}
+            />}
 
           {cuentaConfirmada && (
             <Link

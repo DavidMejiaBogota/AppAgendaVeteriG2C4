@@ -15,17 +15,12 @@ const ConfirmarCuenta = () => {
     useEffect(() => {
       const confirmarCuenta = async () => {
         try {
-          const url = `http://localhost:4000/api/veterinarios/confirmar/${id}`;
-          const { data } = await axios(url);
-          setCuentaConfirmada(true);
-          setAlerta({
-            msg: data.msg
-          })
+          const url = `http://localhost:4000/api/veterinarios/confirmar/${id}`
+          const { data } = await axios(url)
+          setCuentaConfirmada(true)
+          setAlerta({msg: data.msg })
         } catch (error) {
-          setAlerta({
-            msg: error.response.data.msg,
-            error: true
-          })
+          setAlerta({ msg: error.response.data.msg, error: true });
         }
 
         setCargando(false);

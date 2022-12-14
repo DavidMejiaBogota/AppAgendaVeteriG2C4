@@ -60,7 +60,7 @@ if (!usuario){
     } 
     //Revisar password
     if (await usuario.comprobarPassword(password)){
-        console.log(usuario);
+       // console.log(usuario);
          //Autentificar       
         res.json({ token: generarJWT(usuario.id) });
     }else{

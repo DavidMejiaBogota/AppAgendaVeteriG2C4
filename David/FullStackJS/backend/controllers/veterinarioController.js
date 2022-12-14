@@ -43,14 +43,14 @@ const confirmar = async (req, res) => {
 
     if(!usuarioConfirmar) {
         const error = new Error("Token no válido");
-        return res.status(404).json({msg: error.message});
+        return res.status(404).json({msg: error.message });
     }
 
     try {
         usuarioConfirmar.token = null; //se busca el usuario por token
         usuarioConfirmar.confirmado = true; // se modifica el usuario por token
         await usuarioConfirmar.save();// se guardan los datos del usuario buscado, válidado por token.
-        res.json({ msg: "Usuario confirmado correctamente"}); //mensaje de cara al usuario.        
+        res.json({ msg: "Usuario Confirmado Correctamente"}); //mensaje de cara al usuario.        
     } catch (error) {
         console.log(error);
     }

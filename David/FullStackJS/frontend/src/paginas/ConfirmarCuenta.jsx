@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react'
-import { useParams, Link } from 'react-router-dom'
-import axios from 'axios'
-import Alerta from '../components/Alerta'
+import { useEffect, useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import axios from 'axios';
+import Alerta from '../components/Alerta';
 
 const ConfirmarCuenta = () => {
     const [cuentaConfirmada, setCuentaConfirmada] = useState(false);
@@ -15,12 +15,17 @@ const ConfirmarCuenta = () => {
     useEffect(() => {
       const confirmarCuenta = async () => {
         try {
-          const url = `http://localhost:4000/api/veterinarios/confirmar/${id}`
-          const { data } = await axios(url)
-          setCuentaConfirmada(true)
-          setAlerta({msg: data.msg})
+          const url = `http://localhost:4000/api/veterinarios/confirmar/${id}`;
+          const { data } = await axios(url);
+          setCuentaConfirmada(true);
+          setAlerta({
+            msg: data.msg
+          })
         } catch (error) {
-          setAlerta({msg: error.response.data.msg, error: true });
+          setAlerta({
+            msg: error.response.data.msg,
+            error: true
+          })
         }
 
         setCargando(false);
@@ -38,9 +43,9 @@ const ConfirmarCuenta = () => {
 
         <div className="mt-20 md:mt-5 shadow-lg px-5 py-10 rounded-xl bg-white">
           {!cargando &&
-          <Alerta 
-            alerta={alerta}
-          />}
+            <Alerta 
+              alerta={alerta}
+            />}
 
           {cuentaConfirmada && (
             <Link

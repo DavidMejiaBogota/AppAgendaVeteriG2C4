@@ -6,3 +6,4 @@ return jwt.sign({id}, process.env.JWT_SECRET,{
 });
 };
 export default generarJWT;
+

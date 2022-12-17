@@ -1,36 +1,36 @@
 import express from "express";
 import dotenv from "dotenv";
-import cors from "cors"
+import cors from "cors";
 import conectarDB from "./config/db.js";
-import veterinarioRoutes from "./routes/veterinarioRoutes.js"
-import pacienteRoutes from "./routes/pacienteRoutes.js"
+import veterinarioRoutes from "./routes/veterinarioRoutes.js";
+import pacienteRoutes from "./routes/pacienteRoutes.js";
 
-const app = express()
-app.use(express.json())
+const app = express();
+app.use(express.json());
 
-dotenv.config()
+dotenv.config();
 
-conectarDB()
+conectarDB();
 
-const dominiosPermitidos = ["http://localhost:5173"]
-const corsOptions ={
-    origin: function(origin, callback){
-        if(dominiosPermitidos.indexOf(origin) !== -1){
-            //El origen del request esta permitido
-            callback(null, true)
-        }else{
-            callback(new Error('No permitido por CORS'))
-        }
+const dominiosPermitidos = ["http://127.0.0.1:5173"];
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (dominiosPermitidos.indexOf(origin) !== -1) {
+      //El origen del request esta permitido
+      callback(null, true);
+    } else {
+      callback(new Error("No permitido por CORS"));
     }
-}
+  },
+};
 
-app.use(cors( corsOptions))
+app.use(cors(corsOptions));
 
-app.use("/api/veterinarios", veterinarioRoutes)
-app.use("/api/pacientes", pacienteRoutes)
+app.use("/api/veterinarios", veterinarioRoutes);
+app.use("/api/pacientes", pacienteRoutes);
 
 const port = process.env.PORT || 4000;
 
 app.listen(port, () => {
-    console.log(`Servidor funcionando en el puerto ${port}`)
+  console.log(`Servidor funcionando en el puerto ${port}`);
 });

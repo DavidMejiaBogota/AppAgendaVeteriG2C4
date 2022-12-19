@@ -2,6 +2,7 @@ import Veterinario from "../models/Veterinario.js";
 import generarJWT from "../helpers/generarJWT.js";
 import generarId from "../helpers/generarId.js";
 import emailRegistro from "../helpers/emailRegistro.js";
+import emailOlvidePassword from "../helpers/emailOlvidePassword.js";
 
 const registrar = async (req, res) => {
     const { email, nombre } = req.body;
@@ -34,7 +35,6 @@ const perfil = (req, res) => {
   const { veterinario } = req;
   res.json({ perfil : veterinario });
 };
-
 
 const confirmar = async (req, res) => {
     const { token } = req.params; //para poder leer  el routing dinamico "token".
@@ -95,6 +95,12 @@ const olvidePassword = async (req, res) => {
   try {
     existeVeterinario.token = generarId();
     await existeVeterinario.save();
+    //Enviar email con instrucciones
+    emailOlvidePassword({
+        email,
+        nombre: existeVeterinario.nombre,
+        token: existeVeterinario.token
+    })
     res.json({msg: "Hemos enviado un email con las instrucciones."});
   } catch (error) {
     console.log(error);

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Alerta from '../components/Alerta';
 import useAuth from '../hooks/useAuth';
 import clienteAxios from '../config/Axios';
@@ -9,6 +9,8 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [alerta, setAlerta] = useState({});
+
+  const navigate = useNavigate();
  
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,6 +26,8 @@ const Login = () => {
     try {
         const {data} = await clienteAxios.post('/veterinarios/login', {email, password});
         localStorage.setItem('token', data.token)
+
+        navigate('/admin')
     } catch (error) {
         setAlerta({
           msg: error.response.data.msg,
@@ -36,7 +40,7 @@ const Login = () => {
   return (
     <>
       <div className="items-center">
-        <h1 className="text-indigo-600 font-black text-7xl text-center it">
+        <h1 className="text-indigo-600 font-black text-6xl text-center it">
           Inicia Sesión, Administra tus <span className="text-black ">Pacientes</span>
         </h1>
       </div>

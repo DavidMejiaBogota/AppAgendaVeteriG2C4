@@ -1,11 +1,12 @@
 import Veterinario from "../models/Veterinario.js";
 import generarJWT from "../helpers/generarJWT.js";
 import generarId from "../helpers/generarId.js";
+import emailRegistro from "../helpers/emailRegistro.js"
 
 const registrar = async (req, res) =>{
 
 console.log(req.body);
-    const { email} = req.body
+    const { email, nombre } = req.body
 
     //prevenir usuarios duplicados
     const existeUsuario =  await Veterinario.findOne({email})
@@ -18,6 +19,12 @@ console.log(req.body);
         //guardar un nuveo vet.
         const veterinario = new Veterinario(req.body)
         const veterinarioGuardado = await veterinario.save()
+
+        //enviar el email
+        emailRegistro({
+            email, nombre, token: veterinarioGuardado.token,
+        })
+
         res.json(veterinarioGuardado)
     } catch (error) {
         console.log(error);

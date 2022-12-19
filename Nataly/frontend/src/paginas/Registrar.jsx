@@ -14,7 +14,7 @@ const Registrar = () => {
 
   const [alerta, setAlerta] = useState({});
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
     if ([nombre, email, password, repetirPassword].includes("")) {
       setAlerta({ msg: "Hay campos vacios", error: true });
@@ -70,7 +70,7 @@ const Registrar = () => {
               placeholder="Tu nombre"
               className="border w-full p-3 mt-3 bg-gray-50 rounded-xl"
               value={nombre}
-              onChange={(e) => setNombre(e.target.value)}
+              onChange={e => setNombre(e.target.value)}
             />
           </div>
 
@@ -83,7 +83,7 @@ const Registrar = () => {
               placeholder="Email de Registro"
               className="border w-full p-3 mt-3 bg-gray-50 rounded-xl"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={e => setEmail(e.target.value)}
             />
           </div>
 
@@ -96,7 +96,7 @@ const Registrar = () => {
               placeholder="Tu contraseña"
               className="border w-full p-3 mt-3 bg-gray-50 rounded-xl"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={e => setPassword(e.target.value)}
             />
           </div>
 
@@ -109,7 +109,7 @@ const Registrar = () => {
               placeholder="Repite tu contraseña"
               className="border w-full p-3 mt-3 bg-gray-50 rounded-xl"
               value={repetirPassword}
-              onChange={(e) => setRepetirPassword(e.target.value)}
+              onChange={e => setRepetirPassword(e.target.value)}
             />
           </div>
 

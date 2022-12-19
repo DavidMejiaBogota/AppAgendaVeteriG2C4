@@ -1,9 +1,9 @@
-import{ BrowserRouter, Routes, Route} from 'react-router-dom'
-import AuthLayout from './layout/AuthLayout'
-import Login from './paginas/Login'
-import Registrar from './paginas/Registrar'
-import OlvidePassword from './paginas/OlvidePassword'
-import ConfirmarCuenta  from './paginas/ConfirmarCuenta'
+import{ BrowserRouter, Routes, Route} from "react-router-dom"
+import AuthLayout from "./layout/AuthLayout"
+import Login from "./paginas/Login"
+import Registrar from "./paginas/Registrar"
+import OlvidePassword from "./paginas/OlvidePassword"
+import ConfirmarCuenta  from "./paginas/ConfirmarCuenta"
 
 function App() {
   return (
@@ -11,9 +11,9 @@ function App() {
      <Routes>
         <Route path="/"element={<AuthLayout/>}>
           <Route index element={<Login/>}/>
-          <Route path='registrar'element={<Registrar/>}/>
-          <Route path='olvidePassword'element={<OlvidePassword/>}/>
-          <Route path='confirmar/:id'element={<ConfirmarCuenta/>}/>
+          <Route path="registrar"element={<Registrar/>}/>
+          <Route path="olvide-Password"element={<OlvidePassword/>}/>
+          <Route path="confirmar/:id"element={<ConfirmarCuenta/>}/>
 
         </Route>
      </Routes>

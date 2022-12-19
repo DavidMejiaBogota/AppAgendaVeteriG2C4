@@ -1,11 +1,10 @@
 
-
 function Registrar() {
   return (
     <>
-    <h1>Registrar</h1>
+      <h1>Registrar</h1>
     </>
-    
+
   )
 }
 

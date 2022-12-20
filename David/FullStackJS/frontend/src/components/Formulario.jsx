@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Alerta from './Alerta';
+import usePacientes from '../hooks/usePacientes';
 
 const Formulario = () => {
   const [nombre, setNombre] = useState('');
@@ -9,6 +10,10 @@ const Formulario = () => {
   const [sintomas, setSintomas] = useState('');
 
   const [alerta, setAlerta] = useState({});
+
+  const {} = usePacientes();
+
+  
 
   const handleSumbit = e =>{
     e.preventDefault();

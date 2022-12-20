@@ -1,15 +1,21 @@
 import { useState, useEffect, createContext } from 'react';
 import clienteAxios from '../config/Axios';
 
-const AuthContext = createContext();//hacemos referencia a como se va a llamar el context de este provider
+const AuthContext = createContext();//referencia para llamar el context de este provider
 
-//un componente padre que tendrá como componentes hijos a todos los componentes de la app.
+//componente padre tendrá como componentes hijos a todos los componentes de la app.
 const AuthProvider = ({children}) => {
+   
+    const [cargando, setCargando] = useState(true);
     const [auth, setAuth] = useState({});
 
     useEffect(() => {
         const autenticarUsuario = async () => {
             const token = localStorage.getItem('token')
+            if(!token) {
+                setCargando(false)
+                return
+            }
 
             if(!token) return
 
@@ -27,6 +33,8 @@ const AuthProvider = ({children}) => {
                 console.log(error.response.data.msg)
                 setAuth({})  
             }
+
+            setCargando(false);
         }
         autenticarUsuario();
     }, [])
@@ -35,7 +43,8 @@ const AuthProvider = ({children}) => {
         <AuthContext.Provider
             value={{
                 auth,
-                setAuth
+                setAuth,
+                cargando
             }}
         >
             {children}

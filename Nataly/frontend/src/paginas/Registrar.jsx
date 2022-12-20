@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import Alerta from "../components/Alerta";
+import clienteAxios from "../config/axios";
 
 const Registrar = () => {
   const [nombre, setNombre] = useState("");
@@ -14,7 +14,7 @@ const Registrar = () => {
 
   const [alerta, setAlerta] = useState({});
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if ([nombre, email, password, repetirPassword].includes("")) {
       setAlerta({ msg: "Hay campos vacios", error: true });
@@ -35,18 +35,14 @@ const Registrar = () => {
     //Crear usuario en la api
 
     try {
-      const url = "http://localhost:4000/api/veterinarios";
-      await axios.post(url, { nombre, email, password });
-      setAlerta({
-        msg: "Creado correctamente, por favor revisa tu email",
-        error: false,
-      });
+      await clienteAxios.post('/veterinarios', {nombre, email, password});
+      setAlerta({ msg: 'Creado correctamente, por favor revisa tu email', error: false});
     } catch (error) {
-      setAlerta({ msg: error.response.data.msg, error: true });
+      setAlerta({msg: error.response.data.msg, error: true });
     }
-  };
+  }
 
-  const { msg } = alerta;
+  const { msg } = alerta
 
   return (
     <>
@@ -58,6 +54,7 @@ const Registrar = () => {
       </div>
 
       <div className="mt-20 md:mt-5 shadow-lg px-5 py-10 rounded-xl bg-white">
+        
         {msg && <Alerta alerta={alerta} />}
 
         <form onSubmit={handleSubmit}>
@@ -70,7 +67,7 @@ const Registrar = () => {
               placeholder="Tu nombre"
               className="border w-full p-3 mt-3 bg-gray-50 rounded-xl"
               value={nombre}
-              onChange={e => setNombre(e.target.value)}
+              onChange={(e) => setNombre(e.target.value)}
             />
           </div>
 
@@ -83,7 +80,7 @@ const Registrar = () => {
               placeholder="Email de Registro"
               className="border w-full p-3 mt-3 bg-gray-50 rounded-xl"
               value={email}
-              onChange={e => setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
@@ -96,7 +93,7 @@ const Registrar = () => {
               placeholder="Tu contraseña"
               className="border w-full p-3 mt-3 bg-gray-50 rounded-xl"
               value={password}
-              onChange={e => setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
 
@@ -109,7 +106,7 @@ const Registrar = () => {
               placeholder="Repite tu contraseña"
               className="border w-full p-3 mt-3 bg-gray-50 rounded-xl"
               value={repetirPassword}
-              onChange={e => setRepetirPassword(e.target.value)}
+              onChange={(e) => setRepetirPassword(e.target.value)}
             />
           </div>
 

@@ -11,9 +11,7 @@ const Formulario = () => {
 
   const [alerta, setAlerta] = useState({});
 
-  const {} = usePacientes();
-
-  
+  const {guardarPaciente} = usePacientes();
 
   const handleSumbit = e =>{
     e.preventDefault();
@@ -26,6 +24,9 @@ const Formulario = () => {
       })
       return;
     }
+
+    setAlerta({})
+    guardarPaciente({nombre, propietario, email, fecha, sintomas})
   }
 
   const {msg} = alerta;

@@ -2,6 +2,7 @@ import { createContext, useState, useEffect } from "react";
 import clienteAxios from "../config/axios";
 
 const PacientesContext = createContext();
+
 export const PacientesProvider = ({children}) => {
     
     const [pacientes, setPacientes] = useState([]);
@@ -10,11 +11,11 @@ export const PacientesProvider = ({children}) => {
         const obtenerPacientes = async () => {
             try {
                 const token = localStorage.getItem('token')
-                if(!token) return;
+                if(!token) return
 
                 const config = {
                     headers: {
-                        'contentType' : 'application/json',
+                        "content-Type" : "application/json",
                         Authorization : `Bearer ${token}`
                     }
                 }

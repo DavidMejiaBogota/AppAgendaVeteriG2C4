@@ -9,7 +9,7 @@ import Registrar from "./paginas/Registrar";
 import { AuthProvider } from "./context/AuthProvider";
 
 function App() {
- console.log(import.meta.env.VITE_BACKEND_URL);
+ //console.log(import.meta.env.VITE_BACKEND_URL);
   return (
     
     <BrowserRouter>

@@ -6,11 +6,14 @@ import NuevoPassword from "./paginas/NuevoPassword";
 import OlvidePassword from "./paginas/OlvidePassword";
 import Registrar from "./paginas/Registrar";
 
+import { AuthProvider } from "./context/AuthProvider";
+
 function App() {
  console.log(import.meta.env.VITE_BACKEND_URL);
   return (
     
-      <BrowserRouter>
+    <BrowserRouter>
+      <AuthProvider>
         <Routes>
           <Route path="/" element={<AuthLayout/>}>
             <Route index element={<Login/>}/>
@@ -20,8 +23,8 @@ function App() {
             <Route path="confirmar/:id" element={<ConfirmarCuenta/>}/>
           </Route>
         </Routes>
-      
-      </BrowserRouter>
+      </AuthProvider>
+    </BrowserRouter>
     
   )
 }

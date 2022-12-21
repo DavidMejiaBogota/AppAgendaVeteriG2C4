@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Alerta from './Alerta';
+import usePacientes from '../hooks/usePacientes';
 
 const Formulario = () => {
   const [nombre, setNombre] = useState('');
@@ -9,6 +10,8 @@ const Formulario = () => {
   const [sintomas, setSintomas] = useState('');
 
   const [alerta, setAlerta] = useState({});
+
+  const {guardarPaciente} = usePacientes();
 
   const handleSumbit = e =>{
     e.preventDefault();
@@ -21,16 +24,20 @@ const Formulario = () => {
       })
       return;
     }
+
+    setAlerta({})
+    guardarPaciente({nombre, propietario, email, fecha, sintomas})
   }
 
   const {msg} = alerta;
   return (
     <>
-      <p className="text-lg text-center mb-10">
-        Añade tus pacientes y segundos por
-        <span className="text-indigo-600 font-bold"> Administralos</span>
-      </p>
-        
+      <h2 className="font-black text-3xl text-center">Administrador de Pacientes</h2>
+      <p className="text-xl mt-5 mb-10 text-center">
+        Añade a tus pacientes  
+        <span className="text-indigo-600 font-bold"> y Administralos</span>
+      </p>        
+      
       <form
         className="bg-white py-10 px-5 mb-10 lg:mb-5 shadow-md rounded-md"
         onSubmit={handleSumbit}>

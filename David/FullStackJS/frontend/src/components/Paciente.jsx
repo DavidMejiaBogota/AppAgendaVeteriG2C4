@@ -1,8 +1,10 @@
+import usePacientes from "../hooks/usePacientes";
 
 export const Paciente = ({paciente}) => {
-  const {email, fecha, nombre, propietario, sintomas, _id} = paciente
 
-  
+  const {setEdicion} = usePacientes()
+
+  const {email, fecha, nombre, propietario, sintomas, _id} = paciente
 
   const formatearFecha =(fecha) => {//api para formatear la fecha al idioma deseado.
     const nuevaFecha = new Date(fecha)
@@ -35,12 +37,13 @@ export const Paciente = ({paciente}) => {
           <button
             type="button"
             className="py-2 px-10 bg-indigo-600 hover:bg-indigo-800 text-white uppercase font-bold rounded-lg "
+            onClick={() => setEdicion(paciente)}
           >Editar</button>
 
           <button
             type="button"
             className="py-2 px-10 bg-red-600 hover:bg-indigo-800 text-white uppercase font-bold rounded-lg "
-          >Editar</button>
+          >Eliminar</button>
         </div>
     </div>
   );

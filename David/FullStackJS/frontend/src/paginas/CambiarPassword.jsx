@@ -11,7 +11,7 @@ const CambiarPassword = () => {
         pwd_nuevo : ''
     });
 
-    const handleSumbit = e => {
+    const handleSumbit = async e => {
         e.preventDefault();
 
         if(Object.values(password).some(campo => campo === '')) {
@@ -30,7 +30,8 @@ const CambiarPassword = () => {
             return
         }
 
-        guardarPassword(password);
+        const respuesta = await guardarPassword(password);
+        setAlerta(respuesta);
     }
 
     const {msg} = alerta;

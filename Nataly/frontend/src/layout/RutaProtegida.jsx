@@ -1,4 +1,6 @@
 import { Outlet, Navigate } from "react-router-dom"
+import Footer from "../components/Footer"
+import Header from "../components/Header"
 import useAuth from "../hooks/useAuth"
 
 const RutaProtegida = () => {
@@ -10,10 +12,16 @@ const RutaProtegida = () => {
 
   return (
     <>
-    <div>aqui RutaProtegida</div>
+    <Header />
     
 
-    {auth?._id ? <Outlet /> : <Navigate to="/" />}
+    {auth?._id ? (
+    <main className="container mx-auto mt-10">
+    <Outlet />
+    </main>
+    ) : <Navigate to="/" />}
+
+    <Footer />
     </>
   )
 }

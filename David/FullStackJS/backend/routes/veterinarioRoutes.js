@@ -8,7 +8,8 @@ import {
     olvidePassword,
     comprobarToken,
     nuevoPassword,
-    actualizarPerfil
+    actualizarPerfil,
+    actualizarPassword,
 } from "../controllers/veterinarioController.js"; //exportar las funciones de VeterinarioRoutes.js
 import checkAuth from "../middleware/authMiddleware.js";
 
@@ -23,5 +24,6 @@ router.route("/olvide-password/:token").get(comprobarToken).post(nuevoPassword);
 //Área privada.
 router.get("/perfil", checkAuth, perfil);//routing para acceder al perfil.
 router.put('/perfil/:id', checkAuth, actualizarPerfil)//routing para actualizar al perfil.
+router.put('/actualizar-password', checkAuth, actualizarPassword)//routing para actualizar password
 
 export default router;

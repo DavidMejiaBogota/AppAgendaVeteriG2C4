@@ -4,11 +4,17 @@ import clienteAxios from "../config/axios"
 const AuthContext = createContext()
 
 const AuthProvider = ({children}) => { 
+
+    const [cargando, setCargando] = useState(true)
     const [ auth, setAuth ] = useState({})
     useEffect(() => {
         const autenticarUsuario = async () =>{
             const token = localStorage.getItem('token')
-            if(!token) return
+            if(!token) {
+                setCargando(false)
+                return
+            }
+            
             const config= {
                 headers: {
                     "Content-Type": "application/json",
@@ -22,6 +28,7 @@ const AuthProvider = ({children}) => {
                 console.log(error.reponse.data.msg);
                 setAuth({})
             }
+            setCargando(false)
         }
         autenticarUsuario()
     }, [])
@@ -29,7 +36,7 @@ const AuthProvider = ({children}) => {
     return(
         <AuthContext.Provider
         value={{
-            auth, setAuth
+            auth, setAuth, cargando
         }}>
             {children}
 

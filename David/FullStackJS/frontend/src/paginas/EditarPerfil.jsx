@@ -15,7 +15,7 @@ const EditarPerfil = () => {
         
     }, [auth]);
 
-    const handleSumbit = e => {
+    const handleSumbit = async e => {
         e.preventDefault();
 
         const {nombre, email} = perfil
@@ -27,7 +27,8 @@ const EditarPerfil = () => {
             })
             return
         }
-        actualizarPerfil(perfil);
+        const resultado = await actualizarPerfil(perfil);
+        setAlerta(resultado);
     }
     const {msg} = alerta
     return (
@@ -104,7 +105,7 @@ const EditarPerfil = () => {
                     <input
                         type="submit"
                         value="Guardar Cambios"
-                        className="bg-indigo-700 px-10 py-3 font-bold text-white rounded-lg uppercase w-full mt-5"
+                        className="bg-indigo-700 hover:bg-indigo-500 px-10 py-3 font-bold text-white rounded-lg uppercase w-full mt-5"
                     />
                 </form>
             </div>

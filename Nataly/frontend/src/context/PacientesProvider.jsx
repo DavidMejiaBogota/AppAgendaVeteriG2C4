@@ -30,15 +30,26 @@ export const PacientesProvider = ({children}) => {
         obtenerPacientes()
     },[])
 
-    const guardarPaciente = async (paciente) =>{
-        try {
-            const token =localStorage.getItem('token')
-            const config = {
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`
-                }
+    const guardarPaciente = async (paciente) => {
+        const token =localStorage.getItem('token')
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
             }
+        }
+        if (paciente.id) {
+            try {
+                const { data } = await clienteAxios.put(`/pacientes/${paciente.id}`, paciente, config)
+                const pacientesActualizados =pacientes.map( pacienteState => pacienteState._id === data._id ? data : pacienteState)
+                setPacientes(pacientesActualizados)
+            } catch (error) {
+                console.log(error);
+            }
+            
+        }else {
+            try {
+            
             const { data } = await clienteAxios.post('/pacientes', paciente, config)
             const { createdAt, updatedAt,__v, ...pacienteAlmacenado } = data
             
@@ -46,6 +57,8 @@ export const PacientesProvider = ({children}) => {
         } catch (error) {
             console.log(error.response.data.msg);
         }
+        }
+        
     }
 
     const setEdicion =(paciente) => {
@@ -57,7 +70,8 @@ export const PacientesProvider = ({children}) => {
     value={{
         pacientes,
         guardarPaciente,
-        setEdicion
+        setEdicion,
+        paciente
     }}>
         {children}
     </PacientesContext.Provider>

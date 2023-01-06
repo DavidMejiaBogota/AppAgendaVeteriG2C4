@@ -170,4 +170,32 @@ const actualizarPerfil = async (req, res) => {
     }
 }
 
-export { registrar, perfil, confirmar, autenticar, olvidePassword, comprobarToken, nuevoPassword, actualizarPerfil}
+const actualizarPassword = async (req, res) =>{
+    //leer los datos
+    const { id }= req.veterinario
+    const { pwd_actual, pwd_nuevo }= req.body
+    //comprobar que el veterinario exista
+    const veterinario = await Veterinario.findById(id)
+    if (!veterinario) {
+        const error = new Error('Hubo un error')
+        return res.status(400).json({
+            msg: error.message
+        })
+    }
+    //comprobar su contraseña
+    if (await veterinario.comprobarPassword(pwd_actual)){
+      //Almacenar su nueva contraseña 
+       veterinario.password = pwd_nuevo
+       await veterinario.save()
+       res.json({msg: 'Contraseña actualizada correctamente'})
+    } else {
+        const error = new Error('La contraseña actual es incorrecta.')
+        return res.status(400).json({
+            msg: error.message
+        })
+    }
+
+    
+}
+
+export { registrar, perfil, confirmar, autenticar, olvidePassword, comprobarToken, nuevoPassword, actualizarPerfil, actualizarPassword}

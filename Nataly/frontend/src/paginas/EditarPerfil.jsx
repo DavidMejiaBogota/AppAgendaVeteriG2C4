@@ -33,7 +33,7 @@ const EditarPerfil = () => {
     <>
         <AdminNav />
         <h2 className="font-black text-3xl text-center mt-10">Editar Perfil</h2>
-        <p className="text-indigo-600 font-bold">Modifica tu{' '}
+        <p className="text-indigo-600 font-bold text-center">Modifica tu{' '}
         <span className="text-indigo-600 font-bold">Información aquí</span> </p>
     
       <section className="flex justify-center">

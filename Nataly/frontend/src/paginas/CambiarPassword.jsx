@@ -44,11 +44,11 @@ const CambiarPassword = () => {
         <span className="text-indigo-600 font-bold">Contraseña aquí</span> </p>
 
 
-        <section className="flex justify-center">
-        <div className="w-full md:wd-1/2 bg-white shadow rounded-lg p-5">
+        <section className="flex justify-center my-2">
+        <div className="w-9/12 md:wd-1/2 bg-white shadow rounded-lg p-5">
 
         {msg && <Alerta alerta={alerta} />}
-          <form
+          <form className="mx-4 px-4"
           onSubmit={handleSubmit}>
 
             <div className="my-4">

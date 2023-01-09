@@ -1,8 +1,7 @@
 import { useState } from "react"
-import { useEffect } from "react"
 import AdminNav from "../components/AdminNav"
-import useAuth from '../hooks/useAuth'
 import Alerta from "../components/Alerta"
+import useAuth from '../hooks/useAuth'
 
 const CambiarPassword = () => {
   const { guardarPassword } = useAuth()
@@ -83,7 +82,7 @@ const CambiarPassword = () => {
             <input type="submit"
             value="Actualizar Contraseña"
             className="bg-indigo-700 px-10 py-3 font-bold text-white rounded-lg uppercase w-full mt-5"
-            ></input>
+            />
 
           </form>
 

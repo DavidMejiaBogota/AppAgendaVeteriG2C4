@@ -1,8 +1,6 @@
 import usePacientes from '../hooks/usePacientes'
 
-
-
- const Paciente = ({paciente}) => {
+const Paciente = ({paciente}) => {
   
   const {setEdicion, eliminarPaciente} =usePacientes()
 
@@ -10,7 +8,7 @@ import usePacientes from '../hooks/usePacientes'
 
   const formatearFecha =(fecha) =>{
     const nuevaFecha = new Date(fecha)
-    return new Intl.DateTimeFormat('es-ES', {dateStyle: 'long'}).format(nuevaFecha)
+    return new Intl.DateTimeFormat('es-MX', {dateStyle: 'long'}).format(nuevaFecha)
   }
 
   return (
@@ -53,7 +51,6 @@ import usePacientes from '../hooks/usePacientes'
           Editar
         </button>
 
-<div></div>
         <button
         type="button"
         className="py-2 px-10 mx-5 bg-red-600 hover:bg-red-700 text-white uppercase font-bold rounded-md"

@@ -47,7 +47,7 @@ import usePacientes from "../hooks/usePacientes"
         setEmail('')
         setFecha('')
         setSintomas('')
-        setId(null)
+        setId('')
     }
     const { msg } = alerta
 
@@ -138,13 +138,13 @@ import usePacientes from "../hooks/usePacientes"
         <input 
         type="submit"
         className="bg-indigo-600 w-full p-3 text-white uppercase font-bold hover:bg-indigo-700 cursor-pointer transition-colors"
-        value={id ? 'Guardar Cambios' : 'Agregar Paciente'}
+        value={id ? 'Guardar Cambios' : "Agregar Paciente"}
         />
 
     </form>
 
     {msg && 
-    <Alerta  alerta ={alerta}/>}
+    <Alerta alerta ={alerta}/>}
     
     </>
   )

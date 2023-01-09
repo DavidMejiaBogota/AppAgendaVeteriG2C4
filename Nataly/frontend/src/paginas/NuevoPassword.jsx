@@ -15,22 +15,22 @@ const NuevoPassword = () => {
   useEffect(() => {
     const comprobarToken = async () => {
       try {
-        await clienteAxios(`/veterinarios/olvide-password/${token}`);
+        await clienteAxios(`/veterinarios/olvide-password/${token}`)
         setAlerta({
-          msg: "Coloca tu nueva contraseña",
+          msg: "Coloca tu nueva contraseña"
         });
         setTokenValido(true);
       } catch (error) {
         setAlerta({
           msg: "Hubo un error con el enlace",
-          error: true,
-        });
+          error: true
+        })
       }
-    };
+    }
     comprobarToken();
-  }, []);
+  }, [])
 
-  const { msg } = alerta;
+  const { msg } = alerta
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -38,25 +38,25 @@ const NuevoPassword = () => {
     if (password.length < 6) {
       setAlerta({
         msg: "El password debe ser de mínimo 6 caracteres.",
-        error: true,
-      });
-      return;
+        error: true
+      })
+      return
     }
 
     try {
-      const url = `/veterinarios/olvide-password/${token}`;
-      const { data } = await clienteAxios.post(url, { password });
+      const url = `/veterinarios/olvide-password/${token}`
+      const { data } = await clienteAxios.post(url, { password })
       setAlerta({
-        msg: data.msg,
-      });
+        msg: data.msg
+      })
       setPasswordModificado(true)
     } catch (error) {
       setAlerta({
         msg: error.response.data.msg,
-        error: true,
-      });
+        error: true
+      })
     }
-  };
+  }
 
   return (
     <>
@@ -108,7 +108,7 @@ const NuevoPassword = () => {
         }
       </div>
     </>
-  );
-};
+  )
+}
 
-export default NuevoPassword;
+export default NuevoPassword

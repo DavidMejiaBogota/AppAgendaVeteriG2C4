@@ -59,7 +59,7 @@ const Login = () => {
                     Email
                 </label>
                 <input
-                    type="text"
+                    type="email"
                     placeholder="Email de Registro"
                     className="border w-full p-3 mt-3 bg-gray-50 rounded-xl"
                     value={email}

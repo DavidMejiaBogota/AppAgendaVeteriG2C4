@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import Alerta from "../components/Alerta";
 import clienteAxios from "../config/axios";
-//axuos
+
 const ConfirmarCuenta = () => {
   const [cuentaConfirmada, setCuentaConfirmada] = useState(false);
   const [cargando, setCargando] = useState(true);
@@ -14,20 +14,20 @@ const ConfirmarCuenta = () => {
   useEffect(() => {
     const confirmarCuenta = async () => {
       try { 
-        const url = `/veterinarios/confirmar/${id}`;
-        const { data } = await clienteAxios(url);
-        setCuentaConfirmada(true);
+        const url = `/veterinarios/confirmar/${id}`
+        const { data } = await clienteAxios(url)
+        setCuentaConfirmada(true)
         setAlerta({ msg: data.msg})
       } catch (error) {
         setAlerta({
           msg: error.response.data.msg,
           error: true,
-        });
+        })
       }
-      setCargando(false);
-    };
+      setCargando(false)
+    }
     confirmarCuenta();
-  }, []);
+  }, [])
 
   return (
     <>
@@ -49,7 +49,7 @@ const ConfirmarCuenta = () => {
         )}
       </div>
     </>
-  );
+  )
 };
 
 export default ConfirmarCuenta;

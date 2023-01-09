@@ -30,7 +30,7 @@ export const PacientesProvider = ({children}) => {
             }
         }
         obtenerPacientes()
-    },[ auth ])
+    },[auth])
 
     const guardarPaciente = async (paciente) => {
         const token =localStorage.getItem('token')
@@ -59,9 +59,8 @@ export const PacientesProvider = ({children}) => {
         } catch (error) {
             console.log(error.response.data.msg);
         }
-        }
-        
     }
+}
 
     const setEdicion =(paciente) => {
         setPaciente(paciente)
@@ -82,7 +81,7 @@ export const PacientesProvider = ({children}) => {
         const pacientesActualizados = pacientes.filter(pacientesState => pacientesState._id !== id)
         setPacientes(pacientesActualizados)
             } catch (error) {
-                console.log(error);
+                console.log(error)
             }
         }
     }

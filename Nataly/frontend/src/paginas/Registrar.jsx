@@ -4,12 +4,9 @@ import Alerta from "../components/Alerta";
 import clienteAxios from "../config/axios";
 
 const Registrar = () => {
-  const [nombre, setNombre] = useState("");
-
-  const [email, setEmail] = useState("");
-
-  const [password, setPassword] = useState("");
-
+  const [nombre, setNombre] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
   const [repetirPassword, setRepetirPassword] = useState("");
 
   const [alerta, setAlerta] = useState({});
@@ -76,7 +73,7 @@ const Registrar = () => {
               Email
             </label>
             <input
-              type="text"
+              type="email"
               placeholder="Email de Registro"
               className="border w-full p-3 mt-3 bg-gray-50 rounded-xl"
               value={email}
